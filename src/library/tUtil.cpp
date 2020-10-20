@@ -108,7 +108,7 @@ tStringBuffer tUtil::bstr2string(BSTR bstr, bool nullTerminated)
 
       // gets string length
       int lenMulti = WideCharToMultiByte(
-        CP_UTF8,            // code page
+		CP_ACP,            // code page
         0,            // performance and mapping flags
         bstr,    // wide-character string
         static_cast<int>(lenWide),  // number of chars in string
@@ -125,7 +125,7 @@ tStringBuffer tUtil::bstr2string(BSTR bstr, bool nullTerminated)
 		~C() { delete [] s; } char * s; } str(lenMulti + (nullTerminated? 1 : 0));
 
       int result = WideCharToMultiByte(
-        CP_UTF8,            // code page
+        CP_ACP,            // code page
         0,            // performance and mapping flags
         bstr,    // wide-character string
         static_cast<int>(lenWide),  // number of chars in string
@@ -168,11 +168,11 @@ BSTR tUtil::string2bstr(const char * string, size_t len)
     {
       if (len != -1 && len > INT_MAX) LUACOM_ERROR("string too long");
       int lenWide =
-        MultiByteToWideChar(CP_UTF8, 0, string, static_cast<int>(len), NULL, 0);
+        MultiByteToWideChar(CP_ACP, 0, string, static_cast<int>(len), NULL, 0);
       if(lenWide == 0)
         LUACOM_ERROR(tUtil::GetErrorMessage(GetLastError()));
       bstr = SysAllocStringLen(NULL, lenWide); // plus initializes '\0' terminator
-      MultiByteToWideChar(  CP_UTF8, 0, string, static_cast<int>(len), bstr, lenWide);
+      MultiByteToWideChar(  CP_ACP, 0, string, static_cast<int>(len), bstr, lenWide);
     }
     return bstr;
   }
