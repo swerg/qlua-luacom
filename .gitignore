@@ -1,0 +1,3 @@
+*.user
+*.suo
+mak.vs2008/Release/*
