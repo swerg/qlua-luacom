@@ -2,3 +2,4 @@
 *.suo
 *.db
 mak.vs2015/.Build/*
+mak.vs2015/luacom.VC.VC.opendb
