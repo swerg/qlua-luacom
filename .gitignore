@@ -1,3 +1,4 @@
 *.user
 *.suo
-mak.vs2008/Release/*
+*.db
+mak.vs2015/.Build/*
